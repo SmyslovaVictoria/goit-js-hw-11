@@ -36,7 +36,8 @@ function onSubmit(e) {
 
   pixabayAPI
       .getData()
-    if (pixabayAPI.page === Math.ceil(dataImages.totalHits / 40)) { btnHide() }.then(dataImages => {
+    if (pixabayAPI.page === Math.ceil(dataImages.totalHits / 40)) { btnHide() }
+    .then(dataImages => {
       const images = dataImages.hits;
       onSearch(dataImages.totalHits);
         images.map(image => {
