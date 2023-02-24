@@ -54,7 +54,6 @@ function onSubmit(e) {
 function showMoreImg() {
   pixabayAPI
     .getData()
-    
       .then(dataImages => {
         if (pixabayAPI.page === Math.ceil(dataImages.totalHits / 40)) {
           btnHide();
