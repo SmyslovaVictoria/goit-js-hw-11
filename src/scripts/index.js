@@ -52,19 +52,21 @@ function onSubmit(e) {
 }
 
 function showMoreImg() {
-  pixabayAPI
+    pixabayAPI
+      
     .getData()
-      .then(dataImages => {
-        if (pixabayAPI.page === Math.ceil(dataImages.totalHits / 40)) {
-          btnHide();
-        }
-      const images = dataImages.hits;
-      onSearch(dataImages.totalHits);
-      images.map(image => {
-        renderHtml(image);
-      });
-      btnShow();
-      lightbox.refresh();
+        .then(dataImages => {
+            if (pixabayAPI.page === Math.ceil(dataImages.totalHits / 40)) {
+        btnHide();
+            } else {
+              const images = dataImages.hits;
+              onSearch(dataImages.totalHits);
+              images.map(image => {
+                renderHtml(image);
+              });  
+      }
+    //   btnShow();
+    //   lightbox.refresh();
 
       const { height: cardHeight } = document
         .querySelector('.gallery')
