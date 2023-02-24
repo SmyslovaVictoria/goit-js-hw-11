@@ -20,11 +20,17 @@ let lightbox = new SimpleLightbox('.photo-card a', {
 });
 
 function onSubmit(e) {
-  e.preventDefault();
+    e.preventDefault();
 
   const form = e.currentTarget;
   const value = form.elements.searchQuery.value.trim();
-  pixabayAPI.setSearchQuery(value);
+
+    if (value == '') {
+        onError(); 
+      return;
+    }
+        
+        pixabayAPI.setSearchQuery(value);
   clearMarkup();
   pixabayAPI.resetPage();
 
@@ -33,8 +39,9 @@ function onSubmit(e) {
     .then(dataImages => {
       const images = dataImages.hits;
       onSearch(dataImages.totalHits);
-      images.map(image => {
-        renderHtml(image);
+        images.map(image => {
+    renderHtml(image);
+
       });
       btnShow();
       lightbox.refresh();

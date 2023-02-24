@@ -15,7 +15,10 @@ export default class PixabayAPI {
   async getData() {
     const dataURL = `${this.baseUrl}?key=${this.key}&q=${this.searchQuery}&image_type=${this.imageType}&orientation=${this.orientation}&safesearch=${this.safeSearch}&per_page=${this.perPage}&page=${this.page}`;
     return await axios.get(dataURL).then(response => {
-      if (response.status !== 200 || response.data.hits.length === 0) {
+      if (
+        response.status !== 200 ||
+        response.data.hits.length === 0
+      ) {
         throw new Error(response.status);
       }
       this.nextPage();
