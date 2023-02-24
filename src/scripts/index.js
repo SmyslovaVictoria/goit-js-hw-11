@@ -30,13 +30,12 @@ function onSubmit(e) {
       return;
     }
         
-        pixabayAPI.setSearchQuery(value);
+    pixabayAPI.setSearchQuery(value);
   clearMarkup();
   pixabayAPI.resetPage();
 
   pixabayAPI
-      .getData()
-    if (pixabayAPI.page === Math.ceil(dataImages.totalHits / 40)) { btnHide() }
+    .getData()
     .then(dataImages => {
       const images = dataImages.hits;
       onSearch(dataImages.totalHits);
@@ -56,7 +55,10 @@ function showMoreImg() {
   pixabayAPI
     .getData()
     
-    .then(dataImages => {
+      .then(dataImages => {
+        if (pixabayAPI.page === Math.ceil(dataImages.totalHits / 40)) {
+          btnHide();
+        }
       const images = dataImages.hits;
       onSearch(dataImages.totalHits);
       images.map(image => {
